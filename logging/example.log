@@ -1,0 +1,3 @@
+2018-04-20 12:11:51,375 - simpleExample - WARNING - warning level 
+2018-04-20 12:11:51,376 - simpleExample - ERROR - error level 
+2018-04-20 12:11:51,376 - simpleExample - CRITICAL - critical level 

@@ -11,12 +11,19 @@
             "level": "INFO",
             "formatter": "simple",
             "stream": "ext://sys.stdout"
+        },
+        "logfile": {
+            "class": "logging.FileHandler",
+            "level": "WARNING",
+            "formatter": "simple",
+            "filename": "example.log",
+            "mode": "w"
         }
     },
     "loggers": {
         "simpleExample": {
             "level": "INFO",
-            "handlers": ["console"]
+            "handlers": ["console", "logfile"]
         },
         "root": {
             "level": "DEBUG",
