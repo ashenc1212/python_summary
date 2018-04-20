@@ -5,6 +5,8 @@ total = 0
 # lock = threading.RLock()
 cv = threading.Condition()
 R = 10000
+eve = threading.Event()
+
 
 def increase(num):
     global total
@@ -24,8 +26,21 @@ def decrease(num):
             total = total - 1
             cv.notify_all()
 
+def wait_print():
+    print("wait for event")
+    eve.wait()
+    print("ready now")
+
 threads = [threading.Thread(target = increase, args = (i,)) for i in range(4)] + [threading.Thread(target = decrease, args = (i,)) for i in range(4)]
 [thr.start() for thr in threads]
 [thr.join() for thr in threads]
 print(total)
+
+eve.clear()
+threads = [threading.Thread(target=wait_print) for _ in range(4)]
+[thr.start() for thr in threads]
+time.sleep(1)
+eve.set()
+[thr.join() for thr in threads]
+
 print("finished")
