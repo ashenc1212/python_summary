@@ -20,4 +20,24 @@ context manager:
     - call "__enter__" before context, call "__exit__" after context, use return value in "as"
 - can define a new context manager using @contextmanager. (from contextlib import contextmanager, no need to write __enter__ or __exit__)
 
+Concurrency:
+- threading: 
+    - basic threading: class: Thread (target, arguments), method: start, join
+    - Lock, RLock, (Bounded)Semaphore: acquire()/release() (can be used in "with")
+    - condition variable (can be used in "with")
+    - event: is_set(), set(), clear(), wait()
+- multiprocessing
+    - similar to threading API. Process(target= , argument = )
+    - set_start_method() and get_context()
+    - Queue() and Pipe() to share information. Queue has lock with itself. Pipe() can only have one user at each end. 
+        - Attention: Queue internally uses a pipe with finite size. So Queue.put() may block
+            - this means that using p.join() before the queue is empty may cause deadlock.
+            - can use cancel_join_thread to prevent a thread from being automatically joined.
+    - usually not use shared objects. Can be done using Manager() if needed.
+    - Process Pools
+- concurrent.futures
+    - I think it's not useful. 
+- queue 
+    - queue.Queue implements synchronized queue structure. Can be used with threading.
+
 
