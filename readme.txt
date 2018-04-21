@@ -40,4 +40,20 @@ Concurrency:
 - queue 
     - queue.Queue implements synchronized queue structure. Can be used with threading.
 
+typing:
+- basic usage:
+    - use : and -> to indicate type
+    - type alias
+    - new type
+    - callable
+- can use in comments
 
+click:
+- decorators (functions that return a decorator): click.command/argument/option/group/make_pass_decorator
+
+unittest:
+- assertions:
+    - assertEqual, assertRaise
+- setUp(), tearDown(), setUpClass(), tearDownClass()
+- unittest.mock
+    - use patch (as decorator or context manager) to create mock objects
