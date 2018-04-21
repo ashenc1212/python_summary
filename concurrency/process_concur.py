@@ -4,6 +4,7 @@ import time
 
 def foo(q, num):
     q.put(num)
+    time.sleep(1)
     print("put", num)
     return 0
 
@@ -20,3 +21,11 @@ if __name__ == "__main__":
             print('put', i)
         for res in all_res:
             print(res.get())
+    
+    print("begin queue test")
+    q = mp.Queue()
+    pros = [mp.Process(target = foo, args = (q, i)) for i in range(5)]
+    [p.start() for p in pros]
+    [p.join() for p in pros] ## this may cause deadlock if scale up. But now it's fine.
+    while not q.empty():
+        print(q.get())
