@@ -1,0 +1,8 @@
+pip install --editable .
+
+possibly need :
+virtualenv venv
+. venv/bin/activate
+before that
+
+then you can run "hello" command.
